@@ -6,6 +6,8 @@ import todoApp from './reducers'
 import App from './components/App'
 
 //creating the store
+
+
 let store = createStore(todoApp)
 
 console.log(store.getState());

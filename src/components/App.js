@@ -13,7 +13,7 @@ const App = () => (
         <AddTodo />
         <VisibleTodoList />
         <ClearCompleted />
-        <CompletedList />
+
       </div>
   </div>
 )

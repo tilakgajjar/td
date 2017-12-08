@@ -8,8 +8,8 @@ const TodoList = ({ todos, onTodoClick }) => (
 
   <Button.Group fluid vertical>
     {todos.map((todo, id) => (
-      <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />
-    ))}
+        <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />
+      ))}
   </Button.Group>
 
 )
@@ -17,9 +17,9 @@ const TodoList = ({ todos, onTodoClick }) => (
 TodoList.propTypes = {
   todos: PropTypes.arrayOf(
     PropTypes.shape({
-
       id: PropTypes.number.isRequired,
       completed: PropTypes.bool.isRequired,
+      show: PropTypes.bool.isRequired,
       text: PropTypes.string.isRequired
     }).isRequired
   ).isRequired,

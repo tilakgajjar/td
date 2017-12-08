@@ -5,15 +5,14 @@
 import { combineReducers } from 'redux'
 import {
   ADD_TODO,
-  TOGGLE_TODO,
-  SET_VISIBILITY_FILTER,
-  VisibilityFilters
+  CLEAR_COMPLETED,
+  TOGGLE_TODO
 } from './actions'
 
+/*
+const { SHOW } = VisibilityFilters
 
-const { SHOW_ALL } = VisibilityFilters
-
-const visibilityFilter = (state = SHOW_ALL, action) => {
+const visibilityFilter = (state = SHOW, action) => {
   switch (action.type) {
     case SET_VISIBILITY_FILTER:
       return action.filter
@@ -21,9 +20,8 @@ const visibilityFilter = (state = SHOW_ALL, action) => {
       return state
   }
 }
-
+*/
 //reducer compositions - one reducer
-
 const todo = (state, action) => {
 
   switch (action.type) {
@@ -31,8 +29,18 @@ const todo = (state, action) => {
       return{
           id: action.id,
           text: action.text,
-          completed: false
+          completed: false,
+          show: true
         };
+
+    case CLEAR_COMPLETED:
+      if (!state.completed){
+          return state
+          }
+      return {
+            ...state,
+            show: false
+          };
 
     case TOGGLE_TODO:
       if(state.id !== action.id) {
@@ -42,11 +50,11 @@ const todo = (state, action) => {
           ...state,
           completed: !state.completed
         };
-
     default:
       return state;
 
       }
+
   };
 
 const todos = (state = [], action) => {
@@ -59,6 +67,10 @@ const todos = (state = [], action) => {
         todo(undefined, action)
       ];
 
+    case CLEAR_COMPLETED:
+      return state.map(t => todo(t, action));;
+
+
     case TOGGLE_TODO:
       return state.map(t => todo(t, action));
 
@@ -68,8 +80,7 @@ const todos = (state = [], action) => {
 };
 
 const todoApp = combineReducers({
-  todos: todos,
-  visibilityFilter: visibilityFilter
+  todos: todos
 })
 
 export default todoApp

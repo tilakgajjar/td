@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Accordion, Segment, Button, Icon } from 'semantic-ui-react'
 import FilterLink from '../containers/FilterLink'
-
+import TodoList from './TodoList'
 
 
 const CompletedList = () => (
