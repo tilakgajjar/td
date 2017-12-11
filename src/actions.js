@@ -1,43 +1,26 @@
-//Actions are payloads of information that send data from your application to your store
-//Action Creator - the functions that create actions
-//Dispatch() or react-redux connect() method to dispatch actions
-
 export const ADD_TODO = 'ADD_TODO'
 export const CLEAR_COMPLETED = 'CLEAR_COMPLETED'
 export const TOGGLE_TODO = 'TOGGLE_TODO'
-export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
-/*
-export const VisibilityFilters = {
-  SHOW: 'SHOW'
-}
-*/
-let counter = 0
 
-export function addTodo(text) {
-  return {
-    id: counter++ ,
+let counter = 0;
+
+export const addTodo = text => {
+  return{
     type: ADD_TODO,
-    text }
+    text,
+    id: counter++
+  }
 }
 
-export function toggleTodo(id) {
-  return {
+export const toggleTodo = (id) => {
+  return{
     type: TOGGLE_TODO,
-    id }
+    id
+  }
 }
 
-export function clearCompleted(TodoList) {
-  return {
-    type: CLEAR_COMPLETED,
-    todos: TodoList
-    }
+export const clearCompleted = () => {
+  return{
+    type: CLEAR_COMPLETED
+  }
 }
-
-/*
-export function setVisibilityFilter(filter) {
-  return {
-    type: SET_VISIBILITY_FILTER,
-    filter }
-}
-
-*/

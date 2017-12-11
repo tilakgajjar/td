@@ -1,35 +1,34 @@
 import { connect } from 'react-redux'
-import { toggleTodo, clearCompleted } from '../actions'
 import TodoList from '../components/TodoList'
+import { toggleTodo, clearCompleted } from '../actions'
+import ClearButton from './ClearButton'
 
-/*
-const getVisibleTodos = (todos, filter) => {
-  switch (filter) {
-    case 'SHOW':
-      return todos.filter(t => t.show)
-    default:
-      return todos
-  }
+
+const getVisibleTodos = (todos) => {
+  console.log('Hey');
+  return todos.filter(t => t.show)
+
 }
-*/
 
+//return todos.filter(t => t.completed)
 const mapStateToProps = state => {
   return {
-    todos: state.todos
+      todos: getVisibleTodos(state.todos)
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onTodoClick: id => {
-      dispatch(toggleTodo(id))
-    },
-    onClearCompleted: todos => {
-      dispatch(clearCompleted(todos))
-    }
+      onTodoClick: id => {
+        dispatch(toggleTodo(id))
+      }
+/*
+      onClearCompleted: () => {
+        console.log('jsj');
+      dispatch(clearCompleted())
+    } */
   }
 }
-
 const VisibleTodoList = connect(
   mapStateToProps,
   mapDispatchToProps
